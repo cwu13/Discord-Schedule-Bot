@@ -130,18 +130,6 @@ def return_daily_task(user):
           temp_list.append(x)
       return(temp_list)
 
-# def delete_schedule(index, user):
-#   if user == 'cait':
-#     c_schedule = db["c_schedule"]
-#     if len(c_schedule) > index:
-#       del c_schedule[index]
-#     db["c_schedule"] = c_schedule
-#   else:
-#     d_schedule = db["d_schedule"]
-#     if len(d_schedule) > index:
-#       del d_schedule[index]
-#     db["d_schedule"] = d_schedule
-
 def delete_schedule(task, user):
   if user == 'cait':
     c_schedule = db["c_schedule"]
@@ -193,22 +181,6 @@ async def on_message(message):
       user = "cait"
     update_schedule(m_list, user)
     await message.channel.send("New task added for " + user + ": " + m_list[0] + " on " + m_list[1] + " from " + m_list[2] + " to " + m_list[3])
-  
-  # if msg.startswith("$del"):
-  #   user = msg.split(" ", 3)[1]
-  #   index = int(msg.split(" ",3)[2])
-  #   if user == 'cait':
-  #     c_schedule = []
-  #     if "c_schedule" in db.keys():
-  #       delete_schedule(index, user)
-  #       c_schedule = db["c_schedule"]
-  #     await message.channel.send(c_schedule)
-  #   else:
-  #     d_schedule = []
-  #     if "d_schedule" in db.keys():
-  #       delete_schedule(index, user)
-  #       d_schedule = db["d_schedule"]
-  #     await message.channel.send(d_schedule)
 
   if msg.startswith("$del"):
     user = msg.split(" ", 3)[1]
@@ -225,19 +197,6 @@ async def on_message(message):
         delete_schedule(task, user)
         d_schedule = db["d_schedule"]
       await message.channel.send(d_schedule)
-    
-  # if msg.startswith("$schedule"):
-  #   user = msg.split(" ", 2)[1]
-  #   if user == 'cait':
-  #     c_schedule = []
-  #     if "c_schedule" in db.keys():
-  #       c_schedule = db["c_schedule"]
-  #     await message.channel.send(c_schedule)
-  #   else:
-  #     d_schedule = []
-  #     if "d_schedule" in db.keys():
-  #       d_schedule = db["d_schedule"]
-  #     await message.channel.send(d_schedule)
 
   if msg.startswith("$schedule"):
     user = msg.split(" ", 2)[1]
